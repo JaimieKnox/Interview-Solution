@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+				
+public class Program
+{
+    public static void Main()
+    {
+		Console.WriteLine(GetFirstNonRepeatingCharacter("nbkccode")?.ToString()           == null ? "null" : GetFirstNonRepeatingCharacter("nbkccode")?.ToString());
+		Console.WriteLine(GetFirstNonRepeatingCharacter("experiencenbkccode")?.ToString() == null ? "null" : GetFirstNonRepeatingCharacter("experiencenbkccode")?.ToString());
+		Console.WriteLine(GetFirstNonRepeatingCharacter("abab")?.ToString()               == null ? "null" : GetFirstNonRepeatingCharacter("abab")?.ToString());
+    }
+
+    public static char? GetFirstNonRepeatingCharacter(string s)
+    {
+		if (s.Length == 0) 
+			return null;
+
+		char initChar = s.First();
+		var repeatCount = s.Skip(1).Count(x => x == initChar);
+		
+		if (repeatCount == 0)
+		{
+			return s.First();
+		}
+		else 
+		{
+			s = s.Replace(initChar.ToString(), "");
+		}
+	
+		return GetFirstNonRepeatingCharacter(s);
+    }
+}
